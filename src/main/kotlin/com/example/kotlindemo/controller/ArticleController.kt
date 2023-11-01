@@ -37,7 +37,7 @@ class ArticleController @Autowired constructor(private val articleRepository: Ar
         articleRepository.save(article)
 
 
-    @GetMapping("/articles/{id}")
+    @GetMapping("/api/articles/{id}")
     fun getArticleById(@PathVariable(value = "id") articleId: Long): ResponseEntity<Article> {
         return articleRepository.findById(articleId).map { article ->
             ResponseEntity.ok(article)
