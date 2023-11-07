@@ -31,10 +31,21 @@ class ArticleController @Autowired constructor(private val articleRepository: Ar
         return "article/index"
     }
 
+    @GetMapping("/addArticle")
+    fun showForm(model : Model,article: Article): String {
+        model["article"] = article
+        print(model)
+        return "article/form"
+    }
 
-    @PostMapping("/articles")
-    fun createNewArticle(@Valid @RequestBody article: Article): Article =
-        articleRepository.save(article)
+
+    @PostMapping("/addArticle")
+    fun addArticle(@Valid article: Article ): String {
+            articleRepository.save(article)
+            return "redirect:/article"
+    }
+
+
 
 
     @GetMapping("/api/articles/{id}")
